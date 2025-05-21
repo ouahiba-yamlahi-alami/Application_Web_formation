@@ -1,0 +1,23 @@
+{
+  "name": "application/app_formation",
+  "description": "Application web MVC POO pour la gestion de formations proposées par une entreprise",
+  "type": "project",
+  "authors": [
+    {
+      "name": "Ouahiba",
+      "email": "yamlahialamiwahiba@gmail.com"
+    }
+  ],
+  "require": {
+    "php": "^8.0",
+    "ext-pdo": "*"
+  },
+  "autoload": {
+    "psr-4": {
+      "App\\": "App/"
+    }
+  },
+  "scripts": {
+    "start": "php -S localhost:8000 -t "
+  }
+}
