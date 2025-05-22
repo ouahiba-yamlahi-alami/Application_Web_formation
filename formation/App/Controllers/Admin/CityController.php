@@ -32,7 +32,11 @@ class CityController extends BaseController
     public function index() {
         $filter_id = $_GET['filter_id'] ?? '';
         $filter_name = $_GET['filter_name'] ?? '';
-        $cities = $this->cityModel->filter($filter_id, $filter_name);
+        $filter_country_id = $_GET['filter_country_id'] ?? '';
+        $filter_country_name = $_GET['filter_country_name'] ?? '';
+
+        $cities = $this->cityModel->filter($filter_id, $filter_name, $filter_country_id, $filter_country_name);
+
         $this->view('admin/city/index', ['cities' => $cities]);
     }
 

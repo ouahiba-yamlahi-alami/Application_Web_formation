@@ -76,9 +76,16 @@ class City
     /**
      * @param string|null $filter_id
      * @param string|null $filter_name
+     * @param string|null $filter_country_id
+     * @param string|null $filter_country_name
      * @return array
      */
-    public function filter(?string $filter_id = null, ?string $filter_name = null): array {
+    public function filter(
+        ?string $filter_id = null,
+        ?string $filter_name = null,
+        ?string $filter_country_id = null,
+        ?string $filter_country_name = null
+    ): array {
         $query = "SELECT cities.*, countries.name AS country_name 
               FROM cities 
               INNER JOIN countries ON cities.country_id = countries.id 
@@ -94,6 +101,16 @@ class City
         if (!empty($filter_name)) {
             $query .= " AND cities.name LIKE :filter_name";
             $params[':filter_name'] = '%' . $filter_name . '%';
+        }
+
+        if (!empty($filter_country_id)) {
+            $query .= " AND cities.country_id LIKE :filter_country_id";
+            $params[':filter_country_id'] = '%' . $filter_country_id . '%';
+        }
+
+        if (!empty($filter_country_name)) {
+            $query .= " AND countries.name LIKE :filter_country_name";
+            $params[':filter_country_name'] = '%' . $filter_country_name . '%';
         }
 
         $stmt = $this->db->prepare($query);

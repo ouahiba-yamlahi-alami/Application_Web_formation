@@ -49,13 +49,29 @@ class FormationController extends BaseController
         $this->trainerModel = new Trainer();
     }
 
-    /**
-     * @return void
-     */
     public function index()
     {
-        $formations = $this->formationModel->getAll();
-        $this->view('admin/formations/index', ['formations' => $formations]);
+        $filters = [
+            'price' => $_GET['filter_price'] ?? null,
+            'mode' => $_GET['filter_mode'] ?? null,
+            'course_id' => $_GET['filter_course_id'] ?? null,
+            'city_id' => $_GET['filter_city_id'] ?? null,
+            'trainer_id' => $_GET['filter_trainer_id'] ?? null,
+        ];
+
+        $formations = $this->formationModel->filter($filters);
+
+        $courses = $this->courseModel->all();
+        $cities = $this->cityModel->all();
+        $trainers = $this->trainerModel->getAll();
+
+        $this->view('admin/formations/index', [
+            'formations' => $formations,
+            'courses' => $courses,
+            'cities' => $cities,
+            'trainers' => $trainers,
+            'filters' => $filters // utile pour garder les valeurs des filtres dans le formulaire
+        ]);
     }
 
     /**

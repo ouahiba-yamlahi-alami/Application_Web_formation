@@ -1,56 +1,86 @@
 <style>
     body {
-        font-family: Arial, sans-serif;
-        background-color: #f4f4f4;
-        padding: 20px;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background: linear-gradient(to right, #f0f4f8, #d9e4f5);
+        padding: 40px;
+        margin: 0;
     }
 
     h2 {
-        color: #333;
-        margin-bottom: 20px;
+        text-align: center;
+        color: #1d3557;
+        font-size: 32px;
+        margin-bottom: 30px;
+        font-weight: 700;
+        letter-spacing: 1px;
     }
 
     form {
         background: #fff;
-        padding: 25px;
-        border-radius: 8px;
-        box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-        max-width: 600px;
+        padding: 30px 40px;
+        border-radius: 12px;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+        max-width: 700px;
         margin: 0 auto;
+    }
+
+    label {
+        display: block;
+        margin-bottom: 6px;
+        font-weight: 600;
+        color: #333;
+        font-size: 15px;
     }
 
     input[type="number"],
     input[type="date"],
     select {
         width: 100%;
-        padding: 10px;
-        margin-bottom: 15px;
-        border: 1px solid #ccc;
-        border-radius: 4px;
-        box-sizing: border-box;
+        padding: 12px;
+        margin-bottom: 20px;
+        border: 1.5px solid #ccc;
+        border-radius: 6px;
         font-size: 16px;
+        box-sizing: border-box;
+        transition: border-color 0.3s ease;
     }
 
-    label {
-        display: block;
-        margin-bottom: 6px;
-        font-weight: bold;
-        color: #555;
+    input[type="number"]:focus,
+    input[type="date"]:focus,
+    select:focus {
+        border-color: #1d3557;
+        outline: none;
+        box-shadow: 0 0 5px rgba(29, 53, 87, 0.2);
     }
 
     button[type="submit"] {
-        background-color: #28a745;
+        background-color: #1d3557;
         color: white;
-        padding: 12px 20px;
+        padding: 14px 24px;
         border: none;
-        border-radius: 4px;
-        font-size: 16px;
+        border-radius: 6px;
+        font-size: 17px;
+        font-weight: 600;
         cursor: pointer;
         transition: background-color 0.3s ease;
+        display: block;
+        width: 100%;
     }
 
     button[type="submit"]:hover {
-        background-color: #218838;
+        background-color: #16324f;
+    }
+    .btn {
+        display: inline-block;
+        background: linear-gradient(to right, #ff4d00, rgba(179, 33, 0, 0.98));
+        color: white;
+        padding: 12px 20px;
+        text-decoration: none;
+        border-radius: 6px;
+        font-weight: 500;
+        border: none;
+        cursor: pointer;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
     }
 </style>
 
@@ -95,5 +125,5 @@
     <input type="date" name="dates[]">
     <input type="date" name="dates[]">
 
-    <button type="submit">Créer</button>
+    <button type="submit" class="btn">Créer</button>
 </form>

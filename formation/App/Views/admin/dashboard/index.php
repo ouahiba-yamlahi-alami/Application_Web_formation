@@ -1,58 +1,46 @@
 <?php $title = "Tableau de bord"; ?>
 
-<div class="mb-6">
-    <h1 class="text-3xl font-bold text-gray-800">Bienvenue sur le tableau de bord</h1>
-    <p class="text-gray-600 mt-2">Gérez vos entités de formation depuis ce panneau d'administration.</p>
+<div class="mb-8">
+    <h1 class="text-4xl font-extrabold text-gray-900">Bienvenue sur le tableau de bord</h1>
+    <p class="text-gray-600 mt-3 max-w-xl">Gérez vos entités de formation depuis ce panneau d'administration.</p>
 </div>
 
-<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-    <div class="bg-white p-6 rounded-lg shadow hover:shadow-lg transition">
-        <h2 class="text-xl font-semibold text-gray-700">🌍 Pays</h2>
-        <p class="text-gray-500 mt-2">Ajouter, modifier ou supprimer les pays disponibles.</p>
-        <a href="/admin/country" class="inline-block mt-4 text-blue-600 hover:underline">Gérer</a>
-    </div>
+<!-- Cartes statistiques colorées -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+    <?php
+    // Couleurs pastel et icônes SVG simples associées
+    $cards = [
+        'Pays' => ['color' => 'bg-indigo-100 text-indigo-700', 'icon' => '🌍', 'url' => '/admin/country', 'desc' => 'Ajouter, modifier ou supprimer les pays disponibles.'],
+        'Villes' => ['color' => 'bg-rose-100 text-rose-700', 'icon' => '🏙️', 'url' => '/admin/city', 'desc' => 'Gérez les villes par pays.'],
+        'Formateurs' => ['color' => 'bg-green-100 text-green-700', 'icon' => '👨‍🏫', 'url' => '/admin/trainers', 'desc' => 'Ajouter et modifier les formateurs disponibles.'],
+        'Sujets' => ['color' => 'bg-yellow-100 text-yellow-700', 'icon' => '📖', 'url' => '/admin/subjects', 'desc' => 'Ajouter des sujets liés aux domaines.'],
+        'Formations' => ['color' => 'bg-purple-100 text-purple-700', 'icon' => '📆', 'url' => '/admin/formations', 'desc' => 'Planifiez et gérez les formations.'],
+    ];
 
-    <div class="bg-white p-6 rounded-lg shadow hover:shadow-lg transition">
-        <h2 class="text-xl font-semibold text-gray-700">🏙️ Villes</h2>
-        <p class="text-gray-500 mt-2">Gérez les villes par pays.</p>
-        <a href="/admin/city" class="inline-block mt-4 text-blue-600 hover:underline">Gérer</a>
-    </div>
-
-    <div class="bg-white p-6 rounded-lg shadow hover:shadow-lg transition">
-        <h2 class="text-xl font-semibold text-gray-700">👨‍🏫 Formateurs</h2>
-        <p class="text-gray-500 mt-2">Ajouter et modifier les formateurs disponibles.</p>
-        <a href="/admin/trainers" class="inline-block mt-4 text-blue-600 hover:underline">Gérer</a>
-    </div>
-
-    <div class="bg-white p-6 rounded-lg shadow hover:shadow-lg transition">
-        <h2 class="text-xl font-semibold text-gray-700">📖 Sujets</h2>
-        <p class="text-gray-500 mt-2">Ajouter des sujets liés aux domaines.</p>
-        <a href="/admin/subjects" class="inline-block mt-4 text-blue-600 hover:underline">Gérer</a>
-    </div>
-
-    <div class="bg-white p-6 rounded-lg shadow hover:shadow-lg transition">
-        <h2 class="text-xl font-semibold text-gray-700">📆 Formations</h2>
-        <p class="text-gray-500 mt-2">Planifiez et gérez les formations.</p>
-        <a href="/admin/formations" class="inline-block mt-4 text-blue-600 hover:underline">Gérer</a>
-    </div>
-
-    <div class="bg-white p-6 rounded-lg shadow hover:shadow-lg transition">
-        <h2 class="text-xl font-semibold text-gray-700">📁 Domaines</h2>
-        <p class="text-gray-500 mt-2">Gérez les domaines de spécialité.</p>
-        <a href="/admin/domaines" class="inline-block mt-4 text-blue-600 hover:underline">Gérer</a>
-    </div>
+    foreach ($cards as $name => $info) :
+        $count = $entityCounts[$name] ?? 0;
+        ?>
+        <div class="rounded-lg shadow-lg p-6 flex items-center <?= $info['color'] ?> transition transform hover:scale-105">
+            <div class="text-5xl mr-5"><?= $info['icon'] ?></div>
+            <div>
+                <h2 class="text-2xl font-semibold"><?= $name ?></h2>
+                <p class="text-sm mb-2"><?= $info['desc'] ?></p>
+                <div class="font-bold text-xl"><?= $count ?></div>
+                <a href="<?= $info['url'] ?>" class="mt-2 inline-block text-indigo-600 font-medium hover:underline">Gérer</a>
+            </div>
+        </div>
+    <?php endforeach; ?>
 </div>
 
-<div class="mt-10 grid grid-cols-1 md:grid-cols-2 gap-8">
-    <!-- Graphique camembert -->
-    <div class="bg-white p-6 rounded-lg shadow">
-        <h3 class="text-lg font-semibold text-gray-700 mb-4">Répartition des entités</h3>
+<!-- Graphiques -->
+<div class="mt-12 grid grid-cols-1 md:grid-cols-2 gap-10">
+    <div class="bg-white rounded-lg shadow p-6">
+        <h3 class="text-xl font-semibold text-gray-800 mb-5">Répartition des entités</h3>
         <canvas id="pieChart"></canvas>
     </div>
 
-    <!-- Graphique en barres -->
-    <div class="bg-white p-6 rounded-lg shadow">
-        <h3 class="text-lg font-semibold text-gray-700 mb-4">Nombre d'entités</h3>
+    <div class="bg-white rounded-lg shadow p-6">
+        <h3 class="text-xl font-semibold text-gray-800 mb-5">Nombre d'entités</h3>
         <canvas id="barChart"></canvas>
     </div>
 </div>
@@ -60,39 +48,82 @@
 <script>
     const dataFromPHP = <?= json_encode($entityCounts) ?>;
 
-    // Camembert
-    const ctx = document.getElementById('pieChart').getContext('2d');
-    new Chart(ctx, {
-        type: 'pie',
+    // Palette pastel
+    const colors = [
+        '#6366F1', // indigo-500
+        '#F87171', // red-400
+        '#34D399', // green-400
+        '#FBBF24', // yellow-400
+        '#A78BFA'  // purple-400
+    ];
+
+    // Pie Chart
+    const pieCtx = document.getElementById('pieChart').getContext('2d');
+    new Chart(pieCtx, {
+        type: 'doughnut',
         data: {
             labels: Object.keys(dataFromPHP),
             datasets: [{
-                label: 'Répartition',
                 data: Object.values(dataFromPHP),
-                backgroundColor: [
-                    '#1E3A8A', '#2563EB', '#3B82F6', '#60A5FA', '#93C5FD', '#BFDBFE'
-                ]
+                backgroundColor: colors,
+                borderWidth: 2,
+                borderColor: '#fff',
+                hoverOffset: 30
             }]
+        },
+        options: {
+            responsive: true,
+            cutout: '60%',
+            plugins: {
+                legend: {
+                    position: 'bottom',
+                    labels: {
+                        color: '#374151', // gray-700
+                        font: { weight: 'bold', size: 14 }
+                    }
+                },
+                tooltip: {
+                    callbacks: {
+                        label: ctx => `${ctx.label}: ${ctx.parsed} entités`
+                    }
+                }
+            }
         }
     });
 
-    // Barres
+    // Bar Chart
     const barCtx = document.getElementById('barChart').getContext('2d');
     new Chart(barCtx, {
         type: 'bar',
         data: {
             labels: Object.keys(dataFromPHP),
             datasets: [{
-                label: "Nombre d'entités",
+                label: 'Nombre d\'entités',
                 data: Object.values(dataFromPHP),
-                backgroundColor: '#3B82F6'
+                backgroundColor: colors,
+                borderRadius: 6,
+                maxBarThickness: 45
             }]
         },
         options: {
             responsive: true,
             scales: {
                 y: {
-                    beginAtZero: true
+                    beginAtZero: true,
+                    ticks: { color: '#374151', font: { size: 14 } },
+                    grid: { color: '#E5E7EB' }
+                },
+                x: {
+                    ticks: { color: '#374151', font: { size: 14 } },
+                    grid: { display: false }
+                }
+            },
+            plugins: {
+                legend: { display: false },
+                tooltip: {
+                    callbacks: {
+                        label: ctx => `${ctx.parsed.y} entités`
+                    }
                 }
             }
         }
