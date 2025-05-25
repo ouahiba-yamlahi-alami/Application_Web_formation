@@ -15,6 +15,8 @@
         'Formateurs' => ['color' => 'bg-green-100 text-green-700', 'icon' => '👨‍🏫', 'url' => '/admin/trainers', 'desc' => 'Ajouter et modifier les formateurs disponibles.'],
         'Sujets' => ['color' => 'bg-yellow-100 text-yellow-700', 'icon' => '📖', 'url' => '/admin/subjects', 'desc' => 'Ajouter des sujets liés aux domaines.'],
         'Formations' => ['color' => 'bg-purple-100 text-purple-700', 'icon' => '📆', 'url' => '/admin/formations', 'desc' => 'Planifiez et gérez les formations.'],
+        'cours' => ['color' => 'bg-purple-100 text-purple-700', 'icon' => '🎓', 'url' => '/admin/courses', 'desc' => 'Planifiez et gérez les cours.'],
+        'Domaines' => ['color' => 'bg-purple-100 text-purple-700', 'icon' => '📁', 'url' => '/admin/domaines', 'desc' => 'Planifiez et gérez les domaines.'],
     ];
 
     foreach ($cards as $name => $info) :

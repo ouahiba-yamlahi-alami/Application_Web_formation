@@ -18,6 +18,7 @@
 </head>
 <body class="bg-gray-100 font-sans">
 <div class="container mx-auto p-6">
+    <h1 class="text-6xl font-extrabold text-center mb-10 text-transparent bg-clip-text bg-gradient-to-r from-orange-500 via-purple-600 to-indigo-700 drop-shadow-lg">Liste des domaines</h1>
     <!-- Formulaire de filtrage -->
     <div class="bg-white p-6 rounded-xl shadow-md mb-6">
         <form action="/admin/domaines" method="GET" class="flex flex-wrap gap-6 items-end">
@@ -38,18 +39,25 @@
             </div>
 
             <div>
-                <button type="submit"
-                        class="bg-gradient-to-r from-orange-500 to-orange-700 text-white py-2 px-6 rounded-lg font-semibold shadow hover:from-orange-600 hover:to-orange-800 transition duration-300">
-                    Filtrer
-                </button>
+                <div class="flex space-x-3">
+                    <button type="submit"
+                            class="bg-orange-500 text-white font-semibold py-2 px-6 rounded-lg hover:bg-orange-600 transition duration-300">
+                        Appliquer filtres
+                    </button>
+                    <a href="/admin/domaines"
+                       class="bg-orange-500 text-white font-semibold py-2 px-6 rounded-lg hover:bg-orange-600 transition duration-300">
+                        Effacer les filtres
+                    </a>
+                </div>
             </div>
         </form>
     </div>
 
-    <h1 class="text-3xl font-bold text-center mb-6">Liste des domaines</h1>
-
     <div class="text-right mb-4">
-        <a href="/admin/domaines/create" class="bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-700 transition duration-300">Ajouter un domaine</a>
+        <a href="/admin/domaines/create"
+           class="bg-orange-500 text-white font-semibold py-2 px-6 rounded-lg hover:bg-orange-600 transition duration-300">
+            ➕ Ajouter un domaine
+        </a>
     </div>
 
     <div class="overflow-x-auto bg-white shadow-md rounded-lg">

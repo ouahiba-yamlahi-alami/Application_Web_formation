@@ -1,5 +1,8 @@
 <!-- views/admin/subject/index.php -->
 <div class="container mx-auto p-6">
+    <h1 class="text-6xl font-extrabold text-center mb-10 text-transparent bg-clip-text bg-gradient-to-r from-orange-500 via-purple-600 to-indigo-700 drop-shadow-lg">
+        Liste des matières
+    </h1>
     <!-- Formulaire de filtrage -->
     <div class="bg-white p-4 rounded-lg shadow-md mb-6">
         <form action="/admin/subjects" method="GET" class="flex space-x-6">
@@ -13,15 +16,23 @@
                 <input type="text" id="filter_name" name="filter_name" value="<?php echo isset($_GET['filter_name']) ? htmlspecialchars($_GET['filter_name']) : ''; ?>" placeholder="Nom du subject" class="border border-gray-300 rounded-lg px-4 py-2 w-64 focus:outline-none focus:ring-2 focus:ring-blue-500">
             </div>
 
-            <button type="submit" class="bg-blue-500 text-white py-2 px-6 rounded-lg hover:bg-blue-700 transition duration-300">
-                Appliquer
-            </button>
+            <div class="flex space-x-3">
+                <button type="submit"
+                        class="bg-orange-500 text-white font-semibold py-2 px-6 rounded-lg hover:bg-orange-600 transition duration-300">
+                    Appliquer filtres
+                </button>
+                <a href="/admin/subjects"
+                   class="bg-orange-500 text-white font-semibold py-2 px-6 rounded-lg hover:bg-orange-600 transition duration-300">
+                    Effacer les filtres
+                </a>
+            </div>
         </form>
     </div>
-    <h1 class="text-3xl font-bold mb-6">Liste des matières</h1>
-
     <div class="text-right mb-4">
-        <a href="/admin/subjects/create" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">Ajouter une matière</a>
+        <a href="/admin/subjects/create"
+           class="bg-orange-500 text-white font-semibold py-2 px-6 rounded-lg hover:bg-orange-600 transition duration-300">
+            ➕ Ajouter une matière
+        </a>
     </div>
 
     <table class="min-w-full bg-white shadow-md rounded-lg">

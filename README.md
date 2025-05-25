@@ -1,4 +1,9 @@
 # Project Setup
+## Concepts clés et configuration
+- Architecture MVC
+- Programmation Orientée Objet (POO)
+- Autoloading (Chargement automatique des classes)
+
 ## Step 1: Create a Project Folder
 
 - mkdir Application_Web
@@ -30,7 +35,11 @@ phpinfo()
 ```
 docker-compose up -d
 ```
-
+## Step 5: Lancer la commande pour générer l’autoload :
+```
+composer init
+composer dump-autoload
+```
 ### Then go to:
 
 - http://localhost:8080 → PHP web app
