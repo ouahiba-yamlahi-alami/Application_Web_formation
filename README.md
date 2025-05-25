@@ -1,8 +1,8 @@
 # Project Setup
 ## Step 1: Create a Project Folder
 
-- mkdir web_application
-- cd web_application/
+- mkdir Application_Web
+- cd Application_Web/
   
 ## Step 2: Create the docker-compose.yml file
 
@@ -17,7 +17,7 @@ composer -v
 - Docker version 27.3.1, build ce12230
 - Composer version 2.8.4 2024-12-11 11:57:47
 
-## Step 3: Create public/index.php
+## Step 3: Create formation/index.php
 This will help test if PHP is working.
 
 ```php
