@@ -49,6 +49,9 @@ class FormationController extends BaseController
         $this->trainerModel = new Trainer();
     }
 
+    /**
+     * @return void
+     */
     public function index()
     {
         $filters = [

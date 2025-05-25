@@ -8,6 +8,7 @@ DROP TABLE IF EXISTS subjects;
 DROP TABLE IF EXISTS domain;
 DROP TABLE IF EXISTS cities;
 DROP TABLE IF EXISTS countries;
+DROP TABLE IF EXISTS contacts;
 
 -- Table des pays
 CREATE TABLE countries (
@@ -101,3 +102,14 @@ CREATE TABLE registrations (
                                registration_date DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
                                FOREIGN KEY (formation_id) REFERENCES formations(id)
 );
+
+CREATE TABLE contacts (
+                          id INT AUTO_INCREMENT PRIMARY KEY,
+                          name VARCHAR(100) NOT NULL,
+                          email VARCHAR(100) NOT NULL,
+                          phone VARCHAR(50),
+                          subject VARCHAR(150) NOT NULL,
+                          message TEXT NOT NULL,
+                          submitted_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
+

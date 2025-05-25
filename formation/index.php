@@ -13,14 +13,10 @@ function initializeDatabase($pdo) {
 }
 
 try {
-    // Utilisation de la classe Database pour obtenir la connexion PDO
     $pdo = Database::getInstance();
-
-    // Vérification de l'existence des tables
     $pdo->query("SELECT 1 FROM countries LIMIT 1");
+    $pdo->query("SELECT 1 FROM contacts LIMIT 1");
 } catch (PDOException $e) {
-    echo "Tables missing. Creating...\n";
-    // Si une erreur survient (tables manquantes), on recrée la base de données
     $pdo = Database::getInstance();
     initializeDatabase($pdo);
 }

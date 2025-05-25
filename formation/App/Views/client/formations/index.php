@@ -3,28 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FormExpert - Our Formations</title>
+    <title>FormExpert - Nos Formations</title>
     <link rel="stylesheet" href="../../../../css/formations.css" />
 </head>
 <body>
 <section class="page-header">
     <div class="container">
-        <h1>Our Training Programs</h1>
-        <p>Discover our comprehensive range of professional training courses designed to enhance your skills and boost your career.</p>
+        <h1>Nos Programmes de Formation</h1>
+        <p>Découvrez notre gamme complète de cours de formation professionnelle conçus pour améliorer vos compétences et booster votre carrière.</p>
     </div>
 </section>
 
 <section class="section">
     <div class="container">
         <div class="search-filters">
-            <h2>Find Your Perfect Course</h2>
+            <h2>Trouvez votre cours idéal</h2>
             <form id="filter-form">
                 <div class="filter-group">
 
                     <div class="filter-item">
-                        <label for="domain">Domain</label>
+                        <label for="domain">Domaine</label>
                         <select id="domain" name="domain">
-                            <option value="">All Domains</option>
+                            <option value="">Tous les domaines</option>
                             <?php foreach ($domains as $domain): ?>
                                 <option value="<?= htmlspecialchars($domain['id']) ?>"
                                     <?= (isset($filters['domain_id']) && $filters['domain_id'] == $domain['id']) ? 'selected' : '' ?>>
@@ -35,9 +35,9 @@
                     </div>
 
                     <div class="filter-item">
-                        <label for="subject">Subject</label>
+                        <label for="subject">Sujet</label>
                         <select id="subject" name="subject">
-                            <option value="">All Subjects</option>
+                            <option value="">Tous les sujets</option>
                             <?php foreach ($subjects as $subject): ?>
                                 <option value="<?= htmlspecialchars($subject['id']) ?>"
                                     <?= (isset($filters['subject_id']) && $filters['subject_id'] == $subject['id']) ? 'selected' : '' ?>>
@@ -48,9 +48,9 @@
                     </div>
 
                     <div class="filter-item">
-                        <label for="course">Course</label>
+                        <label for="course">Cours</label>
                         <select id="course" name="course">
-                            <option value="">All Courses</option>
+                            <option value="">Tous les cours</option>
                             <?php foreach ($courses as $course): ?>
                                 <option value="<?= htmlspecialchars($course['id']) ?>"
                                     <?= (isset($filters['course_id']) && $filters['course_id'] == $course['id']) ? 'selected' : '' ?>>
@@ -64,9 +64,9 @@
 
                 <div class="filter-group">
                     <div class="filter-item">
-                        <label for="city_id">Location</label>
+                        <label for="city_id">Lieu</label>
                         <select id="city_id" name="city_id">
-                            <option value="">All Locations</option>
+                            <option value="">Tous les lieux</option>
                             <?php foreach ($cities as $city): ?>
                                 <option value="<?= htmlspecialchars($city['id']) ?>"
                                     <?= (isset($filters['city_id']) && $filters['city_id'] == $city['id']) ? 'selected' : '' ?>>
@@ -78,8 +78,8 @@
                 </div>
 
                 <div class="filter-actions">
-                    <button type="reset" class="btn btn-secondary">Reset</button>
-                    <button type="submit" class="btn">Search Courses</button>
+                    <button type="reset" class="btn btn-secondary">Réinitialiser</button>
+                    <button type="submit" class="btn">Rechercher des cours</button>
                 </div>
             </form>
         </div>
@@ -95,8 +95,8 @@
                     <div class="formation-content">
                         <h3 class="formation-title"><?= htmlspecialchars($formation['title'] ?? $formation['course_name']) ?></h3>
                         <div class="formation-meta">
-                            <span class="formation-domain"><strong>Domain:</strong> <?= htmlspecialchars($formation['domain_name']) ?></span><br>
-                            <span class="formation-subject"><strong>Subject:</strong> <?= htmlspecialchars($formation['subject_name']) ?></span>
+                            <span class="formation-domain"><strong>Domaine :</strong> <?= htmlspecialchars($formation['domain_name']) ?></span><br>
+                            <span class="formation-subject"><strong>Sujet :</strong> <?= htmlspecialchars($formation['subject_name']) ?></span>
                         </div>
                         <div class="formation-details">
                             <div class="formation-detail" data-city-id="<?= htmlspecialchars($formation['city_id']) ?>">
@@ -105,7 +105,7 @@
                             </div>
                             <div class="formation-detail">
                                 <span class="formation-detail-icon">📅</span>
-                                <span><?= htmlspecialchars($formation['start_date'] ?? 'TBD') ?></span>
+                                <span><?= htmlspecialchars($formation['start_date'] ?? 'À déterminer') ?></span>
                             </div>
                             <div class="formation-detail">
                                 <span class="formation-detail-icon">👨‍🏫</span>
@@ -113,24 +113,16 @@
                             </div>
                             <div class="formation-detail">
                                 <span class="formation-detail-icon"><?= $formation['mode'] === 'online' ? '🖥️' : '🏢' ?></span>
-                                <span><?= $formation['mode'] === 'online' ? 'Online' : 'On-site' ?></span>
+                                <span><?= $formation['mode'] === 'online' ? 'En ligne' : 'Sur site' ?></span>
                             </div>
                         </div>
                         <div class="formation-actions">
                             <span class="formation-price">€<?= htmlspecialchars($formation['price']) ?></span>
-                            <a href="#" class="btn">Register</a>
+                            <a href="registration/index/<?= $formation['id'] ?>" class="btn">S'inscrire</a>
                         </div>
                     </div>
                 </div>
             <?php endforeach; ?>
-        </div>
-
-        <div class="pagination">
-            <a href="#" class="pagination-item active">1</a>
-            <a href="#" class="pagination-item">2</a>
-            <a href="#" class="pagination-item">3</a>
-            <a href="#" class="pagination-item">4</a>
-            <a href="#" class="pagination-item">5</a>
         </div>
     </div>
 </section>

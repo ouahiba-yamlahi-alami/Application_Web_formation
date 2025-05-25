@@ -261,33 +261,6 @@ nav ul li a.active::after {
     color: var(--accent-color);
 }
 
-.pagination {
-    display: flex;
-    justify-content: center;
-    margin-top: 3rem;
-}
-
-.pagination-item {
-    width: 40px;
-    height: 40px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 0 5px;
-    border-radius: 50%;
-    background-color: white;
-    color: var(--text-color);
-    text-decoration: none;
-    transition: all 0.3s ease;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-}
-
-.pagination-item:hover,
-.pagination-item.active {
-    background-color: var(--primary-color);
-    color: white;
-}
-
 footer {
     background-color: var(--dark-bg);
     color: var(--light-text);

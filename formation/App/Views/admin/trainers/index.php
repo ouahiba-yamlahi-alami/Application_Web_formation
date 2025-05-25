@@ -16,44 +16,71 @@
         }
     </script>
 </head>
-<body class="bg-gray-100 font-sans">
+<body class="bg-[#f0f4f8] font-[Poppins] text-slate-800">
 <div class="container mx-auto p-6">
+    <h1 class="text-6xl font-extrabold text-center mb-10 text-transparent bg-clip-text bg-gradient-to-r from-orange-500 via-purple-600 to-indigo-700 drop-shadow-lg">Liste des formateurs</h1>
     <!-- Filter Form -->
     <div class="bg-white p-4 rounded-lg shadow-md mb-6">
-        <form action="/admin/trainers" method="GET" class="flex space-x-6">
-            <div class="flex items-center space-x-2">
-                <label for="filter_id" class="text-lg">Filtrer par ID:</label>
-                <input type="text" id="filter_id" name="filter_id" value="<?php echo isset($_GET['filter_id']) ? htmlspecialchars($_GET['filter_id']) : ''; ?>" placeholder="Filtrer par ID" class="border border-gray-300 rounded-lg px-4 py-2 w-40 focus:outline-none focus:ring-2 focus:ring-blue-500">
+        <form action="/admin/trainers" method="GET" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            <div>
+                <label for="filter_id" class="block text-lg font-medium">Filtrer par ID:</label>
+                <input type="text" id="filter_id" name="filter_id" value="<?= isset($_GET['filter_id']) ? htmlspecialchars($_GET['filter_id']) : ''; ?>" placeholder="ID"
+                       class="border border-gray-300 rounded-lg px-4 py-2 w-full focus:outline-none focus:ring-2 focus:ring-blue-500">
             </div>
 
-            <div class="flex items-center space-x-2">
-                <label for="filter_name" class="text-lg">Filtrer par  Nom:</label>
-                <input type="text" id="filter_name" name="filter_name" value="<?php echo isset($_GET['filter_name']) ? htmlspecialchars($_GET['filter_name']) : ''; ?>" placeholder="Nom du Formateur" class="border border-gray-300 rounded-lg px-4 py-2 w-64 focus:outline-none focus:ring-2 focus:ring-blue-500">
+            <div>
+                <label for="filter_name" class="block text-lg font-medium">Filtrer par nom:</label>
+                <input type="text" id="filter_name" name="filter_name" value="<?= isset($_GET['filter_name']) ? htmlspecialchars($_GET['filter_name']) : ''; ?>" placeholder="Nom du formateur"
+                       class="border border-gray-300 rounded-lg px-4 py-2 w-full focus:outline-none focus:ring-2 focus:ring-blue-500">
             </div>
 
-            <button type="submit" class="bg-blue-500 text-white py-2 px-6 rounded-lg hover:bg-blue-700 transition duration-300">
-                Apply
-            </button>
+            <div>
+                <label for="filter_description" class="block text-lg font-medium">Filtrer par description:</label>
+                <input type="text" id="filter_description" name="filter_description" value="<?= isset($_GET['filter_description']) ? htmlspecialchars($_GET['filter_description']) : ''; ?>" placeholder="Mot-clé dans la description"
+                       class="border border-gray-300 rounded-lg px-4 py-2 w-full focus:outline-none focus:ring-2 focus:ring-blue-500">
+            </div>
+
+            <div>
+                <label for="filter_has_photo" class="block text-lg font-medium">Photo disponible ?</label>
+                <select id="filter_has_photo" name="filter_has_photo"
+                        class="border border-gray-300 rounded-lg px-4 py-2 w-full focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    <option value="">-- Tous --</option>
+                    <option value="1" <?= (isset($_GET['filter_has_photo']) && $_GET['filter_has_photo'] == '1') ? 'selected' : '' ?>>Oui</option>
+                    <option value="0" <?= (isset($_GET['filter_has_photo']) && $_GET['filter_has_photo'] == '0') ? 'selected' : '' ?>>Non</option>
+                </select>
+            </div>
+
+            <div class="flex items-end space-x-4">
+                <button type="submit"
+                        class="bg-orange-500 text-white font-semibold py-2 px-6 rounded-lg hover:bg-orange-600 transition duration-300">
+                    Appliquer filtres
+                </button>
+                <a href="/admin/trainers"
+                   class="bg-orange-500 text-white font-semibold py-2 px-6 rounded-lg hover:bg-orange-600 transition duration-300">
+                    Effacer les filtres
+                </a>
+            </div>
         </form>
     </div>
 
-    <h1 class="text-3xl font-bold text-center mb-6">Liste des formateurs</h1>
-
     <div class="text-right mb-4">
-        <a href="/admin/trainers/create" class="bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-700 transition duration-300">Ajouter Formateur</a>
+        <a href="/admin/trainers/create"
+           class="bg-orange-500 text-white font-semibold py-2 px-6 rounded-lg hover:bg-orange-600 transition duration-300">
+            + Ajouter Formateur
+        </a>
     </div>
 
     <div class="overflow-x-auto bg-white shadow-md rounded-lg">
         <table class="min-w-full table-auto">
-            <thead class="bg-gray-200 text-gray-700">
-            <tr>
-                <th>ID</th>
-                <th>Nom</th>
-                <th>Description</th>
-                <th>Photo</th>
-                <th>Actions</th>
-            </tr>
-            </thead>
+            <table class="min-w-full table-auto">
+                <thead class="bg-gray-200 text-gray-700">
+                <tr>
+                    <th class="py-2 px-4 text-left">ID</th>
+                    <th class="py-2 px-4 text-left">Nom</th>
+                    <th class="py-2 px-4 text-left">Description</th>
+                    <th class="py-2 px-4 text-left">Photo</th>
+                    <th class="py-2 px-4 text-left">Actions</th>
+                </tr>
             <tbody>
             <?php if ($trainers): ?>
                 <?php foreach ($trainers as $trainer): ?>
@@ -76,7 +103,7 @@
                                 </td>
                                 <td class="py-2 px-4">
                                     <button type="submit" class="text-green-600 hover:text-green-800">✔ Enregistrer</button>
-                                    <a href="/admin/trainers" class="text-gray-500 ml-4 hover:underline">Annuler</a>
+                                    <a href="/admin/city" class="text-gray-500 ml-4 hover:underline">Annuler</a>
                                 </td>
                             </form>
                         </tr>

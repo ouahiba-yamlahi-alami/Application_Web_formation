@@ -146,6 +146,10 @@ class CourseController extends BaseController
         exit;
     }
 
+    /**
+     * @param $id
+     * @return void
+     */
     public function delete($id) {
         $this->model->delete($id);
         header('Location: /admin/courses');
