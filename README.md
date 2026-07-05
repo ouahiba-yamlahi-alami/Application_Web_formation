@@ -42,7 +42,8 @@ composer dump-autoload
 ```
 ### Then go to:
 
-- http://localhost:8080 → PHP web app
+- http://localhost:8080 → Frontend: PHP web app
+- http://localhost:8083/admin  → Admin : PHP web app
 
 - http://localhost:8081 → phpMyAdmin
 
